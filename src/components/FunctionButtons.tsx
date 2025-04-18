@@ -126,10 +126,10 @@ export function FunctionButtons() {
         />
       </div>
       <div className="button-container">
-        <button onClick={() => handleButtonClick(1)}>Get Location</button>
-        <button onClick={() => handleButtonClick(2)}>Get User</button>
-        <button onClick={() => handleButtonClick(3)}>Save to Local</button>
-        <button onClick={() => handleButtonClick(4)}>Load from Local</button>
+        <button onClick={() => handleButtonClick(1)}>Geo</button>
+        <button onClick={() => handleButtonClick(2)}>User</button>
+        <button onClick={() => handleButtonClick(3)}>Save</button>
+        <button onClick={() => handleButtonClick(4)}>Load</button>
       </div>
     </div>
   )
