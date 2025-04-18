@@ -1,0 +1,78 @@
+:root {
+  --tg-theme-bg-color: #17212b;
+  --tg-theme-text-color: #ffffff;
+  --tg-theme-hint-color: #7d8b99;
+  --tg-theme-link-color: #2aabee;
+  --tg-theme-button-color: #2aabee;
+  --tg-theme-button-text-color: #ffffff;
+  --tg-theme-secondary-bg-color: #232e3c;
+}
+
+body {
+  background-color: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.text-area-container {
+  margin: 2rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: var(--tg-theme-secondary-bg-color);
+  color: var(--tg-theme-text-color);
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 200px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+textarea::placeholder {
+  color: var(--tg-theme-hint-color);
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background-color: #229ed9;
+}
+
+h1 {
+  color: var(--tg-theme-text-color);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
