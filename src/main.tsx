@@ -2,7 +2,11 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import './utils/telegram-mock'
+
+// Only import mock in development
+if (import.meta.env.VITE_APP_ENV === 'development') {
+  import('./utils/telegram-mock')
+}
 
 // Initialize Telegram WebApp
 document.addEventListener('DOMContentLoaded', () => {

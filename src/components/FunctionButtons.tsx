@@ -14,6 +14,15 @@ declare global {
             username?: string;
           };
         };
+        MainButton: {
+          show: () => void;
+          hide: () => void;
+          setText: (text: string) => void;
+          onClick: (callback: () => void) => void;
+          offClick: (callback: () => void) => void;
+          enable: () => void;
+          disable: () => void;
+        };
       };
     };
   }
@@ -29,8 +38,25 @@ export function FunctionButtons() {
       setIsTelegramAvailable(true)
       window.Telegram.WebApp.ready()
       window.Telegram.WebApp.expand()
+
+      // Setup MainButton
+      const mainButton = window.Telegram.WebApp.MainButton
+      mainButton.setText('Save')
+      mainButton.onClick(() => {
+        localStorage.setItem('savedText', text)
+        setText('Text saved to local storage')
+      })
+      mainButton.show()
     } else {
       setText('Telegram WebApp is not available. Running in mock mode.')
+    }
+
+    // Cleanup
+    return () => {
+      if (window.Telegram?.WebApp?.MainButton) {
+        window.Telegram.WebApp.MainButton.offClick(() => {})
+        window.Telegram.WebApp.MainButton.hide()
+      }
     }
   }, [])
 
@@ -100,10 +126,10 @@ export function FunctionButtons() {
         />
       </div>
       <div className="button-container">
-        <button onClick={() => handleButtonClick(1)}>Geo</button>
-        <button onClick={() => handleButtonClick(2)}>User</button>
-        <button onClick={() => handleButtonClick(3)}>Save</button>
-        <button onClick={() => handleButtonClick(4)}>Load</button>
+        <button onClick={() => handleButtonClick(1)}>Get Location</button>
+        <button onClick={() => handleButtonClick(2)}>Get User</button>
+        <button onClick={() => handleButtonClick(3)}>Save to Local</button>
+        <button onClick={() => handleButtonClick(4)}>Load from Local</button>
       </div>
     </div>
   )
