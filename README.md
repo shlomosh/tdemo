@@ -1,54 +1,47 @@
-# React + TypeScript + Vite
+# Telegram Mini App Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a demo Telegram Mini App built with React and Vite.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Install dependencies:
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Start development server:
+```bash
+npm run dev
 ```
+
+## Deployment
+
+This app is configured to deploy automatically to GitHub Pages. The deployment process is handled by GitHub Actions.
+
+### Manual Deployment
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. The built files will be in the `dist` directory.
+
+### GitHub Pages URL
+
+Once deployed, your app will be available at:
+`https://<your-github-username>.github.io/tma-demo/`
+
+## Telegram Mini App Setup
+
+1. Create a bot with [@BotFather](https://t.me/BotFather)
+2. Use the `/newapp` command to create a new Mini App
+3. Set the Mini App URL to your GitHub Pages URL
+4. Configure the bot's menu button to open your Mini App
+
+## Security Note
+
+For production use, make sure to:
+1. Remove the mock Telegram implementation
+2. Implement proper validation of Telegram's initData
+3. Use the official Telegram WebApp API

@@ -5,7 +5,8 @@ declare global {
   interface Window {
     Telegram: {
       WebApp: {
-        initData: string;
+        ready: () => void;
+        expand: () => void;
         initDataUnsafe: {
           user?: {
             first_name: string;
@@ -20,6 +21,12 @@ declare global {
 
 export function FunctionButtons() {
   const [text, setText] = useState('')
+
+  useEffect(() => {
+    // Initialize Telegram WebApp
+    window.Telegram.WebApp.ready()
+    window.Telegram.WebApp.expand()
+  }, [])
 
   // Load saved text from localStorage on component mount
   useEffect(() => {
@@ -46,17 +53,17 @@ export function FunctionButtons() {
         setText('Geolocation is not supported by this browser')
       }
     } else if (buttonNumber === 2) {
-      // Get user name from mock data
-      const mockUser = {
-        first_name: "Test",
-        last_name: "User",
-        username: "testuser"
+      // Get user name from Telegram WebApp
+      const user = window.Telegram?.WebApp?.initDataUnsafe?.user
+      if (user) {
+        const fullName = [user.first_name, user.last_name].filter(Boolean).join(' ')
+        const displayName = user.username 
+          ? `${fullName} (@${user.username})`
+          : fullName
+        setText(`User: ${displayName}`)
+      } else {
+        setText('User information not available')
       }
-      const fullName = [mockUser.first_name, mockUser.last_name].filter(Boolean).join(' ')
-      const displayName = mockUser.username 
-        ? `${fullName} (@${mockUser.username})`
-        : fullName
-      setText(`User: ${displayName}`)
     } else if (buttonNumber === 3) {
       // Save to local storage
       localStorage.setItem('savedText', text)
