@@ -21,11 +21,17 @@ declare global {
 
 export function FunctionButtons() {
   const [text, setText] = useState('')
+  const [isTelegramAvailable, setIsTelegramAvailable] = useState(false)
 
   useEffect(() => {
-    // Initialize Telegram WebApp
-    window.Telegram.WebApp.ready()
-    window.Telegram.WebApp.expand()
+    // Check if Telegram WebApp is available
+    if (window.Telegram?.WebApp) {
+      setIsTelegramAvailable(true)
+      window.Telegram.WebApp.ready()
+      window.Telegram.WebApp.expand()
+    } else {
+      setText('Telegram WebApp is not available. Running in mock mode.')
+    }
   }, [])
 
   // Load saved text from localStorage on component mount
@@ -54,15 +60,19 @@ export function FunctionButtons() {
       }
     } else if (buttonNumber === 2) {
       // Get user name from Telegram WebApp
-      const user = window.Telegram?.WebApp?.initDataUnsafe?.user
-      if (user) {
-        const fullName = [user.first_name, user.last_name].filter(Boolean).join(' ')
-        const displayName = user.username 
-          ? `${fullName} (@${user.username})`
-          : fullName
-        setText(`User: ${displayName}`)
+      if (isTelegramAvailable) {
+        const user = window.Telegram?.WebApp?.initDataUnsafe?.user
+        if (user) {
+          const fullName = [user.first_name, user.last_name].filter(Boolean).join(' ')
+          const displayName = user.username 
+            ? `${fullName} (@${user.username})`
+            : fullName
+          setText(`User: ${displayName}`)
+        } else {
+          setText('User information not available')
+        }
       } else {
-        setText('User information not available')
+        setText('Telegram WebApp is not available')
       }
     } else if (buttonNumber === 3) {
       // Save to local storage
