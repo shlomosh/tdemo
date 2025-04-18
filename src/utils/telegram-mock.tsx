@@ -708,7 +708,7 @@ declare global {
     };
     mockControlsDiv.appendChild(locationButton);
 
-    document.body.appendChild(mockControlsDiv);
+    // document.body.appendChild(mockControlsDiv);
   };
 
   // Initialize after DOM loaded
