@@ -10,9 +10,13 @@ interface TelegramWebApp {
   initDataUnsafe: {
     query_id?: string;
     user?: {
+      id: number;
       first_name: string;
-      last_name?: string;
-      username?: string;
+      last_name: string;
+      username: string;
+      language_code: string;
+      is_bot: boolean;
+      is_premium: boolean;
     };
     auth_date?: number;
     hash?: string;
@@ -138,9 +142,13 @@ declare global {
         expand: () => void;
         initDataUnsafe: {
           user?: {
+            id: number;
             first_name: string;
-            last_name?: string;
-            username?: string;
+            last_name: string;
+            username: string;
+            language_code: string;
+            is_bot: boolean;
+            is_premium: boolean;
           };
         };
         MainButton: {
@@ -166,11 +174,12 @@ declare global {
   // Mock user data
   const mockUserData = {
     id: 123456789,
-    first_name: "Test",
-    last_name: "User",
-    username: "testuser",
+    first_name: "Jon",
+    last_name: "Smith",
+    username: "@JonSmith",
     language_code: "en",
-    is_premium: false
+    is_bot: false,
+    is_premium: false,
   };
   
   // Mock init data - can be customized as needed
